@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<!--<div class="content-section" style="text-align:center;width:1100px">-->
+<h1 style="margin-top:10px;text-align:left" >Your Profile</h1>
+<div class="row" style="text-align:center;width:1100px">
+  <div class="column">
+    
+        <div class="container"style="text-align:left">
+                <img style="border-radius:50%; height:200px;width:200px;margin-left:190px" src="{{user.profile.image.url}}"></div>
+   
+      
+            <div class="container-fluid" style="width:600px;height:250px;text-align:left;background-color:black;margin-top:20px ;opacity:0.7">
+                 <h2 class="account-heading"style="color:white">Username: {{user.username}}</h2>
+                  <p class="text-secondary" style="font-size:30px;color:white">Email: {{user.email}}</p>
+            </div>
+        </div>
+	   
+  
+	<div class="column">
+	
+        <form method="post" style="color:orange;margin-left:300px;margin-top:0px;" class="col-md-8" enctype="multipart/form-data">
+                        {% csrf_token %}
+				<div class="container-fluid"style="width:400px;height:500px;text-align:center;background-color:black;margin-top:20px ;opacity:0.7">
+					<fieldset class="form-group">
+	
+			            <div class="heading" style="color:red;font-size:40px">Update Profile Info</div>
+						<br/><br/>
+						
+						{% for field in u_form %}
+                        {{ field.label_tag}}<p style="color:black;">{{field}}</p>
+                        {% endfor %}
+						{% for field in p_form %}
+                        {{ field.label_tag}}<p style="color:black;">{{field}}</p>
+                        {% endfor %}
+					</fieldset>	
+                        <br/><br/>
+				         
+                              <button type="submit" style="background-color:black;color:orange;width:100px;height:30px">Update</button>
+					     
+					</div>
+         </form>
+    </div>
+					
+</div>
+<br/><br/>
+
+{% endblock content %}
+
+

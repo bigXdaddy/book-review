@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Authors</h1>
+
+    {% for writer in writers %}
+	<div class="wrapper" style="width:900px;height:220px;margin-left:120px;">
+       <!--<article class="media content-section">-->
+	   <hr>
+		    <div class="media-body" style="text-align:left;"id="one">
+             <img style="width:200px;height:200px;border:5px solid black" src="{{writer.image.url}}">
+		    </div>
+		
+		<div class="media-body" id="two" style="width:22900px;text-align:left;background-color:black;opacity:0.8;">
+		    <div style="margin-left:30px;margin-right:1px">
+		    <h2><strong style="color:orange">Name: </strong><a class="article-title" href="{% url 'writerdetail' id=writer.id %}" >{{writer.name}}</a></h2>
+			<h3><strong style="color:orange">Date of Birth: </strong><i style="color:white">{{writer.date_of_birth}}</i></h3>
+			<br/>
+			<h3><a href="{% url 'writerdetail' id=writer.id %}"><strong>Read Details</strong></a></h3>
+		    </div>
+		</div>
+		</hr>
+			
+        <!--</article>-->
+</div>		
+
+<br/><br/>
+    {% endfor %}
+{% endblock content %}
+

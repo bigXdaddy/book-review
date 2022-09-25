@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+	<div class="wrapper"style="width:900px;margin-left:100px;margin-top:50px">
+       <!--<article class="media content-section">-->
+		    <div class="media-body" style="text-align:left;"id="one">
+              <div class="article-metadata">
+              <!--<a class="mr-2" href="#">{{ book.author }}</a>-->
+                  <small class="text-muted" style="color:black">{{ book.date_posted }}</small>
+              </div>
+			
+			
+			      <img style="width:300px;height:300px;border:5px solid black" src="{{book.image.url}}">
+		    </div>
+		
+		<div class="media-body" id="two" style="width:30600px;color:black;text-align:left;background-color:white;opacity:0.9">
+		    <div style="margin-left:30px;margin-right:30px">
+			
+			<h2><span><strong>Title:&nbsp </strong><b style="color:red">{{ book.title }}</b></h2>
+			<h3><strong>Author:&nbsp </strong><b><i>{% for writer in book.the_writer.all %}
+			<a style="color:darkskyblue" href="{% url 'writerdetail' writer.id %}">{{ writer.name }}</a>{% endfor %}</i></b><br/><br/>
+            <p class="article-content"><strong>Genre:&nbsp </strong><i style="color:purple">
+			{% for the_genre in book.the_genre.all %}{{the_genre}},&nbsp {% if not forloop.last %}{% endif %}{% endfor %}</i></p>  
+			<p class="article-content"><strong>Publication:&nbsp </strong><i style="color:crimson">{{book.publication}}</i></p> 
+			<p class="article-content"><strong>Language:&nbsp </strong><i style="color:green">{{ book.language }}</i></p>
+			<br/><br/>
+			<p class="article-content"><strong>You can buy the book &nbsp </strong><b><i><a href="{{ book.buying_link }}">Here</a></i></b>
+			
+			</div>
+			
+		</div>
+		<br/><br/>
+		<div class="container-fluid" style="width:900px;background-color:black;color:white;opacity:0.8">
+		<h3 class="article-content"><strong>Summary:&nbsp</strong><i style="color:orange">{{ book.summary }}</i></h3><br/><br/>
+		</div>
+		<br/><br/>
+		<div class="container-fluid" style="width:900px;background-color:black;color:white;opacity:0.8">
+		<h3 class="article-content"><strong>Our Review:&nbsp</strong><i style="color:orange">{{ book.bookreview }}</i></h3>
+		</div>	
+        <!--</article>-->
+	</div>	
+	<br/><br/>
+	<br/><br/>
+
+<h1>Comments</h1>
+
+<span>
+<a class="btn btn-default" href="{% url 'comments' id=book.id %}">Add comment</a>
+</span>
+<br/><br/>
+{% if book.comment_set.all %}
+{% for comment in book.comment_set.all %}
+	<div class="comments" style="background-color:white;margin-top:20px;opacity:0.9;height:100px">
+        <p style="margin-left:10px;font-family:arial;font-size:20px;color:blue;margin-top:30px">
+        <img style="height:30px;width:30px;border-radius:40%" src="{{comment.username.profile.image.url}}">&nbsp &nbsp<b>{{ comment.username }}&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{comment.created_date}} </b>
+		
+        <p/>
+		<p style="margin-left:10px;font-family:arial;font-size:20px;color:black">
+		<i>{{ comment.text}}</i>
+		</p>
+		<br/><br/>
+    </div>
+    {% endfor %}
+{% endif %}
+<br/><br/>
+{% endblock content %}

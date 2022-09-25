@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>About Us</h1>
+	<br/><br/>
+	 <div class="container-fluid" style="background-color:black;opacity:0.8;width:1200px;color:orange">
+	<h2 style="color:white;font-family:bookman old style">Hello Reader,</h2><br/>
+	<p style="font-family:cairo;font-size:25px">Here in this website you will find all details about books and their authors.
+	You can search books as per your favourite genre.You can also read the summary of the book and our review on that.You will also get the buying link of that book.
+	You can comment down your opinion on that book.For commenting you only have to register and log in to your account.In the Books section you will find all books and in the Authors section 
+	you will find about authors including books written by them and a short biography of the respective author.So,without wasting time anymore,let's get into the amezing world of Literature.</p>
+	<p style="font-family:cairo;font-size:25px">Happy Reading !!!</p>
+	<br/>
+	<h2 style="color:white;font-family:bookman old style">Team BOOKWORM</h2>
+	</div>
+	<br/><br/><br/><br/>
+	
+	<div class="container" style="width:1200px;background-color:white;opacity:0.9">
+	<h1 style="text-align:center;font-size:50px">Our Team</h1>
+	<br/>
+	<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding:15px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<div class="row" style="text-align:center;width:1200px">
+  <div class="column">
+            <div class="container-fluid" style="width:400px">
+            <img style="width:200px;height:200px;border-radius:50%;margin-top:20px;border:5px solid black" src="/media/goovindjee.jpeg">
+            <h2 class ="article-content" style="color:blue;font-family:bookman old style">Govind Jee<br/><i style="color:crimson">Developer<br/>Content Writer</i></h2>  
+            </div>
+  </div>
+  <div class="column">
+            <div class="container-fluid" style="width:300px">
+            <img style="width:200px;height:200px;border-radius:50%;margin-top:20px;border:5px solid black" src="/media/default.jpg">
+            <h2 class ="article-content" style="color:blue;font-family:bookman old style">ABC<br/><i style="color:crimson">Developer</i></h2>  
+            </div>
+  </div>
+  <div class="column">
+            <div class="container-fluid" style="width:300px">
+            <img style="width:200px;height:200px;border-radius:50%;margin-top:20px;border:5px solid black" src="/media/default.jpg">
+            <h2 class ="article-content" style="color:blue;font-family:bookman old style">XYZ<br/><i style="color:crimson">Developer</i></h2>  
+            </div>
+  </div>
+</div>
+</div>
+<br/>
+{% endblock content %}

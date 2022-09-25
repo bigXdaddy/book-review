@@ -1,0 +1,127 @@
+body{
+    background:  white url("images/blue-background-books.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#bookdiv{
+    background-color: rosybrown;
+    height: 310px;
+    width: 50%;
+    font-family: 'satisfy';
+}
+
+
+#indexes{
+    font-size: 100;
+    font-family: 'satisfy';
+}
+
+.navbar{
+    border-radius: 0;
+}
+
+.navbar-brand{
+    font-family: 'satisfy';
+}
+
+h1 a {
+    color: #000000;
+    font-family: 'Lobster';
+}
+
+.rating{
+  position:absolute;
+  left:80%
+  transform:translate(-50%,-50%);
+  transform: rotateY(180deg);
+  display:flex;
+}
+
+.rating input{
+  display: none;
+}
+
+.rating label{
+  display: block;
+  cursor: pointer;
+  width: 50px;
+  background: white;
+}
+
+.rating label:before {
+  content: '\f005';
+  font-family: fontAwesome;
+  position: relative;
+  display: block;
+  font-size: 50px;
+  color:#101010;
+}
+
+.rating label:after {
+  content: '\f005';
+  font-family: fontAwesome;
+  position: absolute;
+  display: block;
+  font-size: 50px;
+  color:#1f9cff;
+  top:0;
+  opacity: 0;
+  transition: .5s;
+  text-shadow:0 2px 5px rgba(0,0,0,.5);
+}
+
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after
+ {
+  opacity: 1;
+}
+
+
+.comment {
+    margin: 100px 0px 100px 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+body>div.container{
+   margin-top: 5%;
+ }
+
+.content {
+   position: absolute;
+   top: 50%;
+   left:50%;
+   transform: translate(-50%,-50%);
+   }
+
+.checked {
+     color: orange;
+ }
+.fa:hover{
+  cursor: pointer;
+}
+.fa-heart{
+  float: right;
+}
+.fa-heart.checked{
+  color:red;
+}
+.col-lg-4{
+  margin: 10px 0px;
+}
+.mid-size{
+  width: 100% ;
+  height: 40%;
+} */

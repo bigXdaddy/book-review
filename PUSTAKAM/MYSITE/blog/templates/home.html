@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding:15px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+
+<h1>Welcome to Home Page</h1>
+
+<h3 style="font-family:cairo;color:black"><b>Here you can choose the Genre</b> </h3>
+
+<br/><br/>
+
+
+<div class="row" style="text-align:center;width:1200px;">
+  {% for cat1 in genres %}
+  <div class="column">
+    {% for genre in cat1.genre.all %}<a href="{% url 'Genres' id=genre.id %}">
+            <div class="container-fluid" style="background-color:black;opacity:0.9;width:250px">
+            <img style="width:200px;height:200px;border-radius:50%;margin-top:20px" src="{{cat1.image.url}}">
+            <h2 class ="article-content" style="color:white;font-family:bookman old style">{{genre}}</h2>  
+    {% if not forloop.last %} 
+	{% endif %}
+	{% endfor %}
+        </div>
+  </div>
+ {% endfor %} 
+ 
+</div>
+<br/><br/>
+</body>
+</html>
+
+{%endblock%}
+
+
+
+
+
+

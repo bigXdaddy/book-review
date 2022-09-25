@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <h1>New comment</h1>
+	<h3>You are commenting as {{user.username}}<br/><br/>
+	
+    <form method="POST" class="post-form" >
+	{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+	<br/>
+{% endblock %}
+
+
+

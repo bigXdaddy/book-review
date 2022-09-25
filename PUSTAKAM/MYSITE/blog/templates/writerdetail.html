@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="wrapper"style="width:1000px;margin-left:80px;margin-top:50px">
+       <!--<article class="media content-section">-->
+		    <div class="media-body" style="text-align:left;"id="one">
+              <img style="width:350px;height:350px;border:5px solid black" src="{{writer.image.url}}">
+		    </div>
+		
+		<div class="media-body" id="two" style="width:30000px;color:black;text-align:left;background-color:white;opacity:0.8">
+		    <div style="margin-left:30px;margin-right:20px">
+		    <h2><strong>Name: </strong><b style="color:blue">{{writer.name}}</b></h2>
+			<h2><strong>Pen Name: </strong><i style="color:red">{{writer.penname}}</i></h2><br/>
+			<h3><strong>Date of Birth: </strong><i style="color:purple">{{writer.date_of_birth}}</i></h3>
+			<h3><strong>Date of Death: </strong><i style="color:green">{{writer.date_of_death}}</i></h3><br/>
+			<h3><strong><a href="{{ writer.knowmore }}"><b><i>Know more about the author</i></b></a></strong></h3>
+			</div>
+		</div>
+
+<br/><br/>	
+            <div class="container-fluid" style="width:1000px;background-color:black;color:white;opacity:0.8">
+			<h3><strong>Books by the Writer:&nbsp </strong>
+			<i style="color:orange">
+           {% for book in writer.book_set.all %}
+                <a href="{% url 'bookdetail' book.id %}">{{book.title}},&nbsp </a> 
+           {% endfor %}
+		   </i>
+           </h3>
+		   </div><br/><br/>
+		   <div class="container-fluid" style="width:1000px;background-color:black;color:white;opacity:0.8">	
+			<h3><strong>Bio:&nbsp </strong><i style="color:orange">{{writer.Bio}}</i></h3>
+			</div>
+			<br/><br/>
+</div>
+{% endblock content%}
+

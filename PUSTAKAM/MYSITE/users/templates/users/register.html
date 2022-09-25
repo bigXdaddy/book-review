@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<body style="background-image: url('/media/profile_image/stack-of-books-vintage-books-book-books.jpg') ; background-size: 100%; ">
+    <div class="container">
+        <h1>Welcome</h1>
+        <h3 style="font-family:cairo;color:black"><b>
+            You can Register in here!</b>
+        </h3>
+        <div class="container-fluid" style="width:500px;height:700px;text-align:center;background-color:black;margin-top:10px ;opacity:0.8">
+            <div class="row" >
+                <div class="col-md-12" >
+                    <h2 style="color:white">Register</h2>
+                    <br/>
+                <form method="post" style="color:orange;margin-left:77.5px;margin-top:20px;" class="col-md-8">
+                        {% for field in form %}
+                        {% csrf_token %}
+                        {{ field.label_tag}}<p style="color:black;">{{field}}</p>
+                        {% endfor %}
+                    <br/><br/>
+                        <button type="submit" style="background-color:black;color:orange;width:100px;height:30px">Submit</button>
+					<br/><br/>	
+					<div class="border-top pt-3">
+                         <small class="text-muted" style="color:yellow;font-size:15px">
+                                   Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                         </small>
+                    </div>
+					<br/><br/>
+					<p style="color:grey;text-align:left">
+					    *Username should contain Letters, digits and @/./+/-/_ only.<br>
+						*Your password can't be too similar to your other personal information.<br>
+                        *Your password must contain at least 8 characters.<br>
+                        *Your password can't be a commonly used password.<br>
+                        *Your password can't be entirely numeric.
+					</p>	
+                </form>
+					
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<br/><br/>
+{% endblock %}

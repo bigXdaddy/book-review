@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}BOOKWORM{% endblock %}</title>
+
+
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <style>
+        h1 {
+            color: #000000;
+            font-family: 'Lobster';
+        }
+    </style>
+</head>
+
+<body style="background: url('/media/stack-of-books-vintage-books-book-books.jpg'); background-repeat: no-repeate; ">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+
+
+            <!-- Items -->
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <ul class="nav navbar-nav">
+                    <!-- Header -->
+
+                    {% if user.is_authenticated %}<li><img src="{{user.profile.image.url}}" width="50"
+                            style="border-radius:50%"></li>{% endif %}
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'blog-home' %}"
+                            style="font-family:arial;color:white;font-size:30px"><b>&nbsp &nbsp BOOKWORM</b></a>
+                    </div>
+                    <li class="{% block authors_active %}{% endblock %}"><a href="{% url 'writerlist' %}"><span
+                                class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Authors</a></li>
+                    <li class="{% block books_active %}{% endblock %}"><a href="{% url 'booklist' %}"><span
+                                class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp; Books</a></li>
+
+                    <form id="search" class="navbar-form navbar-left" role="search" method="get" action="blog/search">
+                        <div class="form-group">
+                            <input type="text" id="search_input" class="form-control" name="in">
+                        </div>
+                        <button type="submit" onclick="event_handler()" class="btn btn-default">Search</button>
+                    </form>
+
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'blog-home' %}">Home</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'blog-about' %}">About Us</a></li>
+                    <!--<li><a href="#">Gallery</a></li>-->
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'review' %}">Feedback</a></li>
+                    {% else %}
+                    <li><a href="{% url 'blog-home' %}">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Home</a>
+                    <li><a href="{% url 'login' %}">Login</a>
+                    <li><a href="{% url 'register' %}">Register</a>
+                    <li><a href="{% url 'blog-about' %}">About Us</a>
+                        <!-- <li><a href="#">Gallery</a></li>-->
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'review' %}">Feedback</a></li>
+                    {% endif %}
+
+
+                </ul>
+
+
+
+            </div>
+
+        </div>
+    </nav>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    <b>{{message}}</b>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% block content %} {% endblock content %}
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    {% block javascript %}{% endblock %}
+
+    <br /><br />
+
+
+    <!--footer-->
+    <footer id="footer">
+        <style>
+            .footer {
+                position: relative;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: black;
+                color: white;
+                text-align: center;
+            }
+
+            .fa {
+                padding: 15px;
+                font-size: 20px;
+                width: 50px;
+                border-radius: 50%;
+                text-align: center;
+                text-decoration: none;
+                margin: 5px 3px;
+            }
+
+            .fa:hover {
+                opacity: 0.7;
+            }
+
+            .fa-facebook {
+                background: #3B5998;
+                color: white;
+            }
+
+            .fa-twitter {
+                background: #55ACEE;
+                color: white;
+            }
+
+            .fa-instagram {
+                background: #125688;
+                color: white;
+            }
+
+            .fa-linkedin {
+                background: #007bb5;
+                color: white;
+            }
+        </style>
+        <div class="footer" style="text-align:left;">&nbsp &nbsp &nbsp <a style="color:white">Connect Us On:</a>
+            <a href="https://www.facebook.com/profile.php?id=100006980441407" target="_blank" class="fa fa-facebook"></a>
+            <a href="https://mobile.twitter.com/singh89555" target="_blank" class="fa fa-twitter"></a>
+            <a href="https://www.instagram.com/govind.singh2199/" target="_blank" class="fa fa-instagram"></a>
+            <a href="https://www.linkedin.com/mwlite/in/govind-singh-034b601a4" target="_blank" class="fa fa-linkedin"></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            © 2019 Copyright. All Rights Reserved.
+        </div>
+    </footer>
+    <script>
+        const event_handler = () => {
+            const form_value = document.getElementById('search_input');
+            if(form_value.value === ""){
+                location.reload();
+            }
+        }
+    </script>
+</body>
+
+</html>

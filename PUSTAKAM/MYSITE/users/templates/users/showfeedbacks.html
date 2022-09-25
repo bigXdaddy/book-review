@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"><!-- it can be encoded in any type of language-->
+	<title>Feedback List</title>
+</head>
+<body>
+<table border='1px' align='center' cellpadding='10px' cellspacing='0px' >
+<tr>
+	<th> FIRST NAME </TH>
+	<TH> LAST NAME </TH>
+	<TH> EMAIL</TH>
+	<TH cellpadding='50px' height='30px'> REVIEW</TH>
+	<TH COLSPAN="2">ACTION</TH>
+</TR>
+{% for c in feedbacks %}<!-- for loop-->
+<tr>
+	<td>{{c.fname}}</td>
+	<td>{{c.lname}}</td>
+	<td>{{c.email}}</td>
+	<td>{{c.review}}</td>
+	<td><a href="/edit/{{c.id}}"> Edit</a></td>
+	<td><a href="/delete/{{c.id}}">Delete</a></td>
+{% endfor %}<!--end of loop-->
+</tr>
+</table>
+</body>
+</html>
